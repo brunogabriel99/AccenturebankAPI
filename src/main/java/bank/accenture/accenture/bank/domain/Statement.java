@@ -1,5 +1,6 @@
 package bank.accenture.accenture.bank.domain;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -14,7 +15,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import bank.accenture.accenture.bank.enums.OperationTypeEnum;
 
 @Entity
-public class Statement {
+public class Statement implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +36,16 @@ public class Statement {
 	
 	public Statement() {
 	}
+	
+	public Statement(Double operationValue, OperationTypeEnum operationType, LocalDateTime movimentDate,
+			CheckingAccount checkingAccount) {
+		OperationValue = operationValue;
+		this.operationType = operationType;
+		this.movimentDate = movimentDate;
+		this.checkingAccount = checkingAccount;
+	}
+
+
 
 	public Statement(Long id, Double operationValue, OperationTypeEnum operationType, LocalDateTime movimentDate,
 			CheckingAccount checkingAccount) {

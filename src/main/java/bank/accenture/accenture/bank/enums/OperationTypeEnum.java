@@ -4,7 +4,8 @@ public enum OperationTypeEnum {
 
 	WITHDRAW(1, "WITHDRAW"),
 	DEPOSIT(2, "DEPOSIT"),
-	TRANSFER(3, "TRANSFER");
+	TRANSFER(3, "TRANSFER"),
+	DEPOSIT_TRANSFER(4, "DEPOSIT_TRANSFER");
 	
 	private int cod;
 	private String description;

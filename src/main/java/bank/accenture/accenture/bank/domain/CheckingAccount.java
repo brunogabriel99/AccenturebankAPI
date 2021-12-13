@@ -18,7 +18,6 @@ public class CheckingAccount implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String name;
 	private String number;
 	private Double balance;
 	
@@ -31,14 +30,13 @@ public class CheckingAccount implements Serializable{
 	private Client client;
 	
 	public CheckingAccount() {
-		
+		this.balance = 0.0;
 	}
 
-	public CheckingAccount(Long id, String name, String number, Double balance, Agency agency, Client client) {
-		this.id = id;
-		this.name = name;
+
+	public CheckingAccount(String number, Double balance, Agency agency, Client client) {
 		this.number = number;
-		this.balance = balance;
+		this.balance = 0.0;
 		this.agency = agency;
 		this.client = client;
 	}
@@ -49,14 +47,6 @@ public class CheckingAccount implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getNumber() {
@@ -79,8 +69,8 @@ public class CheckingAccount implements Serializable{
 		return agency;
 	}
 
-	public void setAgency(Agency agency) {
-		this.agency = agency;
+	public void setAgency(Agency agencyId) {
+		this.agency = agencyId;
 	}
 
 	public Client getClient() {

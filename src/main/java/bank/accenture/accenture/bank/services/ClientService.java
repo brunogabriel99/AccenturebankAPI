@@ -52,7 +52,7 @@ public class ClientService {
 		try {
 		Client entity = repository.getById(id);
 		Client newClient = updateData(entity, obj);
-		return repository.save(entity);
+		return repository.save(newClient);
 		} catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException(id);
 		}

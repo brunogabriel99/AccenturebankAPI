@@ -1,4 +1,4 @@
-package bank.accenture.accenture.bank.service;
+package bank.accenture.accenture.bank.services;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,7 +1,5 @@
 package bank.accenture.accenture.bank.interfaces;
 
-import bank.accenture.accenture.bank.domain.Statement;
-
 public interface AccountTransactions {
 
 	Boolean transfer (Long idSender, Long idRecipient, Double value);

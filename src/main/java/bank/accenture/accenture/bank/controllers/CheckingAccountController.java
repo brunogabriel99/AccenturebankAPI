@@ -34,7 +34,7 @@ public class CheckingAccountController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<CheckingAccount> findById(Long id) {
+	public ResponseEntity<CheckingAccount> findById(@PathVariable Long id) {
 		CheckingAccount obj = service.getById(id);
 		return ResponseEntity.ok().body(obj);
 	}
@@ -70,7 +70,7 @@ public class CheckingAccountController {
 	}
 	
 	@PutMapping("/transfer/{idSender}/{value}/{idDestiny}")
-	public ResponseEntity<Boolean> transfer(@PathVariable("idSender") long idSender,@PathVariable("idDestiny") long idDestiny, @RequestParam("value") double value) {
+	public ResponseEntity<Boolean> transfer(@PathVariable("idSender") long idSender,@PathVariable("idDestiny") long idDestiny, @PathVariable("value") double value) {
 		service.getById(idSender);
 
 		Boolean transfer = service.transfer(idSender, idDestiny, value);

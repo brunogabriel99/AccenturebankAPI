@@ -8,10 +8,10 @@ public class CheckingAccountDTO {
 
 	private Long id;
 	
-	@JsonProperty("Agency_ID")
+	@JsonProperty("agency")
 	private Long agencyId;
 	
-	@JsonProperty("Client_ID")
+	@JsonProperty("client")
 	private Long clientId;
 
 	public CheckingAccountDTO() {

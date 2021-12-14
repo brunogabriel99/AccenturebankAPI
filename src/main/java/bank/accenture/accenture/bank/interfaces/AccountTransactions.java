@@ -4,7 +4,7 @@ import bank.accenture.accenture.bank.domain.Statement;
 
 public interface AccountTransactions {
 
-	void transfer (Long idSender, Long idRecipient, Double value);
-	void withdraw (Long id, Double value);
-	Statement deposit (Long id, Double value);
+	Boolean transfer (Long idSender, Long idRecipient, Double value);
+	Boolean withdraw (Long id, Double value);
+	Boolean deposit (Long id, Double value);
 }

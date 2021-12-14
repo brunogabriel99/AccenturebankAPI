@@ -32,14 +32,23 @@ public class CheckingAccount implements Serializable{
 	public CheckingAccount() {
 		this.balance = 0.0;
 	}
-
-
+	
 	public CheckingAccount(String number, Double balance, Agency agency, Client client) {
 		this.number = number;
-		this.balance = 0.0;
+		this.balance = balance;
 		this.agency = agency;
 		this.client = client;
 	}
+
+	public CheckingAccount(Long id, String number, Double balance, Agency agency, Client client) {
+		this.id = id;
+		this.number = number;
+		this.balance = balance;
+		this.agency = agency;
+		this.client = client;
+	}
+
+
 
 	public Long getId() {
 		return id;

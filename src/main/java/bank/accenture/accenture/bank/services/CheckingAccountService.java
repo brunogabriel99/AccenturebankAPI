@@ -46,7 +46,11 @@ public class CheckingAccountService implements AccountTransactions {
 		Optional<CheckingAccount> obj = repository.findById(id);
 		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
-
+	
+	public CheckingAccount getCheckingAccountByClient(Client client) {
+		return repository.findByClient(client);
+	}
+	
 	public Double getCheckingAccountBalance(Long id) {
 		Optional<CheckingAccount> obj = repository.findById(id);
 		return obj.get().getBalance();

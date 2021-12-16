@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -70,7 +69,7 @@ public class CheckingAccountController {
 	}
 	
 	@PutMapping("/transfer/{idSender}/{value}/{idDestiny}")
-	public ResponseEntity<Boolean> transfer(@PathVariable("idSender") long idSender,@PathVariable("idDestiny") long idDestiny, @PathVariable("value") double value) {
+	public ResponseEntity<Boolean> transfer(@PathVariable long idSender,@PathVariable long idDestiny, @PathVariable double value) {
 		service.getById(idSender);
 
 		Boolean transfer = service.transfer(idSender, idDestiny, value);

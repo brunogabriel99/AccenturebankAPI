@@ -11,11 +11,15 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import bank.accenture.accenture.bank.DTO.CheckingAccountDTO;
+import bank.accenture.accenture.bank.DTO.DepositVoucherDTO;
+import bank.accenture.accenture.bank.DTO.TransferVoucherDTO;
+import bank.accenture.accenture.bank.DTO.WithdrawVoucherDTO;
 import bank.accenture.accenture.bank.domain.Agency;
 import bank.accenture.accenture.bank.domain.CheckingAccount;
 import bank.accenture.accenture.bank.domain.Client;
 import bank.accenture.accenture.bank.domain.Statement;
 import bank.accenture.accenture.bank.enums.OperationTypeEnum;
+import bank.accenture.accenture.bank.exceptions.BalanceException;
 import bank.accenture.accenture.bank.exceptions.DatabaseException;
 import bank.accenture.accenture.bank.exceptions.RequiredFieldException;
 import bank.accenture.accenture.bank.exceptions.ResourceNotFoundException;
@@ -47,8 +51,8 @@ public class CheckingAccountService implements AccountTransactions {
 		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
-	public CheckingAccount getCheckingAccountByClient(Client client) {
-		return repository.findByClient(client);
+	public CheckingAccount getAccountByClientId(Long id) {
+		return repository.findByClientId(id);
 	}
 	
 	public Double getCheckingAccountBalance(Long id) {
@@ -86,16 +90,16 @@ public class CheckingAccountService implements AccountTransactions {
 	}
 
 	@Override
-	public Boolean transfer(Long idSender, Long idRecipient, Double value) {
+	public TransferVoucherDTO transfer(Long idSender, Long idRecipient, Double value) {
 		Optional<CheckingAccount> accountSender = repository.findById(idSender);
 		Optional<CheckingAccount> accountRecipient = repository.findById(idRecipient);
 
 		if (idSender == idRecipient) {
-			throw new ResourceNotFoundException("You can't transfer to yourself");
+			throw new BalanceException("You can't transfer to yourself");
 		}
 
 		if (value <= 0) {
-			throw new ResourceNotFoundException("Insufficient balance");
+			throw new BalanceException("Insufficient balance");
 		}
 
 		double accountSenderBalance = getCheckingAccountBalance(idSender);
@@ -113,13 +117,15 @@ public class CheckingAccountService implements AccountTransactions {
 
 		statementRepository.saveAll(Arrays.asList(statement, statement2));
 		
-		return true;
+		TransferVoucherDTO transferVoucher = new TransferVoucherDTO(statement, idSender, idRecipient);
+		
+		return transferVoucher;
 	}
 
 	@Override
-	public Boolean withdraw(Long id, Double value) {
+	public WithdrawVoucherDTO withdraw(Long id, Double value) {
 		if (getCheckingAccountBalance(id) < value || value <= 0) {
-			throw new ResourceNotFoundException("Insufficient balance");
+			throw new BalanceException("Insufficient balance");
 		}
 		repository.findById(id).get().setBalance(getCheckingAccountBalance(id) - value);
 
@@ -128,14 +134,15 @@ public class CheckingAccountService implements AccountTransactions {
 		Statement statement = new Statement(value, OperationTypeEnum.WITHDRAW, LocalDateTime.now(), checkingAccout);
 
 		statementRepository.save(statement);
-		return true;
+		WithdrawVoucherDTO wv = new WithdrawVoucherDTO(statement, id);
+		return wv;
 	}
 
 	@Override
-	public Boolean deposit(Long id, Double value) {
+	public DepositVoucherDTO deposit(Long id, Double value) {
 
 		if (value <= 0) {
-			throw new ResourceNotFoundException("Insufficient deposit balance");
+			throw new BalanceException("Insufficient deposit balance");
 		}
 		repository.findById(id).get().setBalance(getCheckingAccountBalance(id) + value);
 
@@ -145,7 +152,9 @@ public class CheckingAccountService implements AccountTransactions {
 
 		statementRepository.save(statement);
 		
-		return true;
+		DepositVoucherDTO depositDTO = new DepositVoucherDTO(statement, id);
+		
+		return depositDTO;
 
 	}
 

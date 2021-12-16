@@ -1,10 +1,13 @@
 package bank.accenture.accenture.bank.DTO;
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import bank.accenture.accenture.bank.domain.CheckingAccount;
 
-public class CheckingAccountDTO {
+public class CheckingAccountDTO implements Serializable{
+	private static final long serialVersionUID = 1L;
 
 	private Long id;
 	

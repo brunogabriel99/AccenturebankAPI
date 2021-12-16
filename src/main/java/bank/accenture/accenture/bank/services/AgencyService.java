@@ -21,6 +21,9 @@ public class AgencyService {
 
 	@Autowired
 	private AgencyRepository repository;
+	
+	@Autowired
+	private CheckingAccountService checkingAccountService;
 
 	public List<Agency> getAll() {
 		return repository.findAll();
@@ -31,6 +34,14 @@ public class AgencyService {
 		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 
+	public Agency findByClientId(Long id) {
+		return checkingAccountService.getAccountByClientId(id).getAgency();
+	}
+	
+	public Agency findByAccountsId(Long id) {
+		return checkingAccountService.getById(id).getAgency();
+	}
+	
 	public void insert(Agency agency) {
 		validate(agency);
 		repository.save(agency);

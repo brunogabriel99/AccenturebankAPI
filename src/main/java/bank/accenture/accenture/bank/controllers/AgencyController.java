@@ -36,6 +36,17 @@ public class AgencyController {
 		Agency c = service.findById(id);
 		return ResponseEntity.ok().body(c);
 	}
+	@GetMapping(value = "/clients/{id}")
+	public ResponseEntity<Agency> findByClientId(@PathVariable Long id) {
+		Agency c = service.findByClientId(id);
+		return ResponseEntity.ok().body(c);
+	}
+	
+	@GetMapping(value = "/accounts/{id}")
+	public ResponseEntity<Agency> findByAccountsId(@PathVariable Long id) {
+		Agency c = service.findByAccountsId(id);
+		return ResponseEntity.ok().body(c);
+	}
 	
 	@PostMapping
 	public ResponseEntity<Agency> insert(@RequestBody Agency obj) {

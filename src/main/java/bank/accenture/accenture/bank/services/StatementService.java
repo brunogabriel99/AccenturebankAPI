@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import bank.accenture.accenture.bank.domain.CheckingAccount;
-import bank.accenture.accenture.bank.domain.Client;
 import bank.accenture.accenture.bank.domain.Statement;
 import bank.accenture.accenture.bank.exceptions.ResourceNotFoundException;
 import bank.accenture.accenture.bank.repositories.StatementRepository;
@@ -17,9 +16,6 @@ public class StatementService {
 
 	@Autowired
 	private StatementRepository repository;
-	
-	@Autowired
-	private ClientService clientService;
 	
 	@Autowired
 	private CheckingAccountService checkingAccountService;
@@ -34,9 +30,8 @@ public class StatementService {
 		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
-	public List<Statement> getAllByCheckingAccount(Long id) {
-		Client client = clientService.findByid(id);
-		CheckingAccount checkingAccount = checkingAccountService.getCheckingAccountByClient(client);
+	public List<Statement> getAllByAccount(Long id) {
+		CheckingAccount checkingAccount = checkingAccountService.getAccountByClientId(id);
 		
 		List<Statement> statementByCheckingAccountId = repository.findByCheckingAccount(checkingAccount);
 		

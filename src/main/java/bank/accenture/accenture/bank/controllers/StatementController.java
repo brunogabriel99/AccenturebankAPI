@@ -32,8 +32,8 @@ public class StatementController {
 	}
 	
 	@GetMapping("/clients/{id}")
-	public ResponseEntity<List<Statement>> getAllByCheckingAccount(@PathVariable long id) {
-		List<Statement> obj = service.getAllByCheckingAccount(id);
+	public ResponseEntity<List<Statement>> getAllByAccount(@PathVariable long id) {
+		List<Statement> obj = service.getAllByAccount(id);
 		return ResponseEntity.ok().body(obj);
 }
 }

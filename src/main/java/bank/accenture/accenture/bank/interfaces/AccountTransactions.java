@@ -1,8 +1,12 @@
 package bank.accenture.accenture.bank.interfaces;
 
+import bank.accenture.accenture.bank.DTO.DepositVoucherDTO;
+import bank.accenture.accenture.bank.DTO.TransferVoucherDTO;
+import bank.accenture.accenture.bank.DTO.WithdrawVoucherDTO;
+
 public interface AccountTransactions {
 
-	Boolean transfer (Long idSender, Long idRecipient, Double value);
-	Boolean withdraw (Long id, Double value);
-	Boolean deposit (Long id, Double value);
+	TransferVoucherDTO transfer (Long idSender, Long idRecipient, Double value);
+	WithdrawVoucherDTO withdraw (Long id, Double value);
+	DepositVoucherDTO deposit (Long id, Double value);
 }

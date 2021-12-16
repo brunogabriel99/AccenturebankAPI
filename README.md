@@ -28,16 +28,16 @@
 
 ## Possible EndPoints:
 
-![EndPoints] https://github.com/brunogabriel99/AccenturebankAPI/blob/main/agency.png
-https://github.com/brunogabriel99/AccenturebankAPI/blob/main/client.png
-https://github.com/brunogabriel99/AccenturebankAPI/blob/main/account.png
-https://github.com/brunogabriel99/AccenturebankAPI/blob/main/statement.png
+![EndPoints] (https://github.com/brunogabriel99/AccenturebankAPI/blob/main/agency.png)
+(https://github.com/brunogabriel99/AccenturebankAPI/blob/main/client.png)
+(https://github.com/brunogabriel99/AccenturebankAPI/blob/main/account.png)
+(https://github.com/brunogabriel99/AccenturebankAPI/blob/main/statement.png)
 
 ## Response example:
 
-![Json] https://github.com/brunogabriel99/AccenturebankAPI/blob/main/accountpost.png
-https://github.com/brunogabriel99/AccenturebankAPI/blob/main/agencypost.png
-https://github.com/brunogabriel99/AccenturebankAPI/blob/main/clientpost.png
+![Json] (https://github.com/brunogabriel99/AccenturebankAPI/blob/main/accountpost.png)
+(https://github.com/brunogabriel99/AccenturebankAPI/blob/main/agencypost.png)
+(https://github.com/brunogabriel99/AccenturebankAPI/blob/main/clientpost.png)
 
 # Conclusions
 

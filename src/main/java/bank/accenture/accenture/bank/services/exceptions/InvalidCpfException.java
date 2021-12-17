@@ -1,4 +1,4 @@
-package bank.accenture.accenture.bank.exceptions;
+package bank.accenture.accenture.bank.services.exceptions;
 
 public class InvalidCpfException extends RuntimeException{
 

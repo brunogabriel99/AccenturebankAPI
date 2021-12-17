@@ -11,10 +11,10 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import bank.accenture.accenture.bank.domain.Agency;
-import bank.accenture.accenture.bank.exceptions.DatabaseException;
-import bank.accenture.accenture.bank.exceptions.RequiredFieldException;
-import bank.accenture.accenture.bank.exceptions.ResourceNotFoundException;
 import bank.accenture.accenture.bank.repositories.AgencyRepository;
+import bank.accenture.accenture.bank.services.exceptions.DatabaseException;
+import bank.accenture.accenture.bank.services.exceptions.RequiredFieldException;
+import bank.accenture.accenture.bank.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class AgencyService {

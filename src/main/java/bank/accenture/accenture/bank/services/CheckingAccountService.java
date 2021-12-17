@@ -19,13 +19,13 @@ import bank.accenture.accenture.bank.domain.CheckingAccount;
 import bank.accenture.accenture.bank.domain.Client;
 import bank.accenture.accenture.bank.domain.Statement;
 import bank.accenture.accenture.bank.enums.OperationTypeEnum;
-import bank.accenture.accenture.bank.exceptions.BalanceException;
-import bank.accenture.accenture.bank.exceptions.DatabaseException;
-import bank.accenture.accenture.bank.exceptions.RequiredFieldException;
-import bank.accenture.accenture.bank.exceptions.ResourceNotFoundException;
 import bank.accenture.accenture.bank.interfaces.AccountTransactions;
 import bank.accenture.accenture.bank.repositories.CheckingAccountRepository;
 import bank.accenture.accenture.bank.repositories.StatementRepository;
+import bank.accenture.accenture.bank.services.exceptions.BalanceException;
+import bank.accenture.accenture.bank.services.exceptions.DatabaseException;
+import bank.accenture.accenture.bank.services.exceptions.RequiredFieldException;
+import bank.accenture.accenture.bank.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class CheckingAccountService implements AccountTransactions {

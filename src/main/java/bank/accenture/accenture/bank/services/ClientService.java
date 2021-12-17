@@ -11,11 +11,11 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import bank.accenture.accenture.bank.domain.Client;
-import bank.accenture.accenture.bank.exceptions.DatabaseException;
-import bank.accenture.accenture.bank.exceptions.InvalidCpfException;
-import bank.accenture.accenture.bank.exceptions.RequiredFieldException;
-import bank.accenture.accenture.bank.exceptions.ResourceNotFoundException;
 import bank.accenture.accenture.bank.repositories.ClientRepository;
+import bank.accenture.accenture.bank.services.exceptions.DatabaseException;
+import bank.accenture.accenture.bank.services.exceptions.InvalidCpfException;
+import bank.accenture.accenture.bank.services.exceptions.RequiredFieldException;
+import bank.accenture.accenture.bank.services.exceptions.ResourceNotFoundException;
 import bank.accenture.accenture.bank.util.CpfValidator;
 
 @Service

@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import bank.accenture.accenture.bank.domain.CheckingAccount;
 import bank.accenture.accenture.bank.domain.Statement;
-import bank.accenture.accenture.bank.exceptions.ResourceNotFoundException;
 import bank.accenture.accenture.bank.repositories.StatementRepository;
+import bank.accenture.accenture.bank.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class StatementService {

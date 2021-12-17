@@ -31,7 +31,7 @@ public class StatementController {
 		return ResponseEntity.ok().body(obj);
 	}
 	
-	@GetMapping("/clients/{id}")
+	@GetMapping("/accounts/{id}")
 	public ResponseEntity<List<Statement>> getAllByAccount(@PathVariable long id) {
 		List<Statement> obj = service.getAllByAccount(id);
 		return ResponseEntity.ok().body(obj);

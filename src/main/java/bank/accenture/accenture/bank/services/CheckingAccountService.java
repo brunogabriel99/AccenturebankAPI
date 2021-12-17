@@ -52,7 +52,9 @@ public class CheckingAccountService implements AccountTransactions {
 	}
 	
 	public CheckingAccount getAccountByClientId(Long id) {
-		return repository.findByClientId(id);
+		
+			Optional<CheckingAccount> obj =  repository.findByClientId(id);
+			return obj.orElseThrow(() -> new ResourceNotFoundException(id));	
 	}
 	
 	public Double getCheckingAccountBalance(Long id) {

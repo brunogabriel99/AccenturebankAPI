@@ -24,7 +24,7 @@
 
 #### Maven
 
-## Basic EndPoint:
+## Basic EndPoint: https://accenturebankapi.herokuapp.com/swagger-ui.html#/
 
 ## Possible EndPoints:
 

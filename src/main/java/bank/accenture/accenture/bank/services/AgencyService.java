@@ -10,7 +10,9 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import bank.accenture.accenture.bank.DTO.AgencyDTO;
 import bank.accenture.accenture.bank.domain.Agency;
+import bank.accenture.accenture.bank.mapper.AgencyMapper;
 import bank.accenture.accenture.bank.repositories.AgencyRepository;
 import bank.accenture.accenture.bank.services.exceptions.DatabaseException;
 import bank.accenture.accenture.bank.services.exceptions.RequiredFieldException;
@@ -42,9 +44,8 @@ public class AgencyService {
 		return checkingAccountService.getById(id).getAgency();
 	}
 	
-	public void insert(Agency agency) {
-		validate(agency);
-		repository.save(agency);
+	public Agency insert(AgencyDTO obj) {
+		return repository.save(AgencyMapper.INSTANCE.toAgency(obj));
 	}
 
 	public void delete(Long id) {
@@ -58,36 +59,15 @@ public class AgencyService {
 		}
 	}
 	
-	public Agency update(long id, Agency obj) {
-		validate(obj);
+	public Agency update(long id, AgencyDTO obj) {
 		try {
-			Agency agency = repository.getById(id);
-			Agency newAgency = updateData(agency, obj);
+			Agency agencyFind = repository.getById(id);
+			Agency newAgency = AgencyMapper.INSTANCE.toAgency(obj);
+			newAgency.setId(agencyFind.getId());
 			return repository.save(newAgency);
 		} catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException("Agency not found");
 		}
 
-	}
-
-	private Agency updateData(Agency agency, Agency obj) {
-		agency.setName(obj.getName());
-		agency.setAdress(obj.getAdress());
-		agency.setPhone(obj.getPhone());
-		return agency;
-	}
-	
-	private void validate(Agency agency) {
-
-		if (agency.getName() == null || agency.getName().isEmpty()) {
-			throw new RequiredFieldException("The field must be mandatory");
-		}
-		if (agency.getAdress() == null || agency.getAdress().isEmpty()) {
-			throw new RequiredFieldException("The field must be mandatory");
-		}
-
-		if (agency.getPhone() == null || agency.getPhone().isEmpty()) {
-			throw new RequiredFieldException("The field must be mandatory");
-		}
 	}
 }

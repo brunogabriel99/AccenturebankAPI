@@ -21,10 +21,6 @@ public class Agency implements Serializable{
 	
 	public Agency() {
 	}
-
-	public Agency(Long id) {
-		this.id = id;
-	}
 	
 	public Agency(Long id, String name, String adress, String phone) {
 		this.id = id;

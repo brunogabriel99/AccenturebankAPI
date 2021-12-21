@@ -10,7 +10,9 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import bank.accenture.accenture.bank.DTO.ClientDTO;
 import bank.accenture.accenture.bank.domain.Client;
+import bank.accenture.accenture.bank.mapper.ClientMapper;
 import bank.accenture.accenture.bank.repositories.ClientRepository;
 import bank.accenture.accenture.bank.services.exceptions.DatabaseException;
 import bank.accenture.accenture.bank.services.exceptions.InvalidCpfException;
@@ -33,9 +35,8 @@ public class ClientService {
 		return client.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
-	public void insert (Client client) {
-		validate(client);
-		repository.save(client);
+	public Client insert (ClientDTO obj) {
+		return repository.save(ClientMapper.INSTANCE.toClient(obj));
 	}
 	
 	public void delete(Long id) {
@@ -48,38 +49,15 @@ public class ClientService {
 		}
 	}
 	
-	public Client update(Long id, Client obj) {
+	public Client update(Long id, ClientDTO obj) {
 		try {
 		Client entity = repository.getById(id);
-		Client newClient = updateData(entity, obj);
+		Client newClient = ClientMapper.INSTANCE.toClient(obj);
+		newClient.setId(entity.getId());
 		return repository.save(newClient);
 		} catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException(id);
 		}
 	}
 	
-	private Client updateData(Client client, Client obj) {
-		client.setName(obj.getName());
-		client.setCpf(obj.getCpf());
-		client.setPhone(obj.getPhone());
-		return client;
-	}
-	
-	private void validate(Client client) {
-		String cpf = client.getCpf();
-			
-			if (client.getName() == null || client.getName().isEmpty()) {
-				throw new RequiredFieldException("The field name must be mandatory");
-			}
-			if (client.getCpf() == null || client.getCpf().isEmpty()) {
-				throw new RequiredFieldException("The field cpf must be mandatory");
-			}
-			if (!CpfValidator.isCPF(cpf)) {
-				throw new InvalidCpfException("Invalid CPF");
-			}
-			if (client.getPhone() == null || client.getPhone().isEmpty()) {
-				throw new RequiredFieldException("The field phone must be mandatory");
-			}
-
-		}
 }

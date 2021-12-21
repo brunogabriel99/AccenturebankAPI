@@ -68,7 +68,8 @@ public class CheckingAccountService implements AccountTransactions {
 			Agency returnAgency = agencyService.findById(checkingAccountDTO.getAgencyId());
 			
 			Client client = new Client(checkingAccountDTO.getClientId());
-			Agency agency = new Agency(checkingAccountDTO.getAgencyId());
+			Agency agency = new Agency();
+			agency.setId(checkingAccountDTO.getAgencyId());
 			
 			CheckingAccount checkingAccount = new CheckingAccount(generateCheckingAccountNumber(), 0.0, agency, client);
 			CheckingAccount returnCheckingAccount = repository.save(checkingAccount);

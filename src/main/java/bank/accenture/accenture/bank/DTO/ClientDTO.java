@@ -2,12 +2,15 @@ package bank.accenture.accenture.bank.DTO;
 
 import javax.validation.constraints.NotBlank;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 public class ClientDTO {
 
 	@NotBlank(message = "name's field required")
 	private String name;
 	
 	@NotBlank(message = "CPF's field required")
+	@CPF
 	private String cpf;
 	
 	@NotBlank(message = "phone's field required")

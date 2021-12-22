@@ -9,16 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import bank.accenture.accenture.bank.DTO.ClientDTO;
 import bank.accenture.accenture.bank.domain.Client;
 import bank.accenture.accenture.bank.mapper.ClientMapper;
 import bank.accenture.accenture.bank.repositories.ClientRepository;
 import bank.accenture.accenture.bank.services.exceptions.DatabaseException;
-import bank.accenture.accenture.bank.services.exceptions.InvalidCpfException;
-import bank.accenture.accenture.bank.services.exceptions.RequiredFieldException;
 import bank.accenture.accenture.bank.services.exceptions.ResourceNotFoundException;
-import bank.accenture.accenture.bank.util.CpfValidator;
 
 @Service
 public class ClientService {

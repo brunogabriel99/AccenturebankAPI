@@ -9,13 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import bank.accenture.accenture.bank.DTO.AgencyDTO;
 import bank.accenture.accenture.bank.domain.Agency;
 import bank.accenture.accenture.bank.mapper.AgencyMapper;
 import bank.accenture.accenture.bank.repositories.AgencyRepository;
 import bank.accenture.accenture.bank.services.exceptions.DatabaseException;
-import bank.accenture.accenture.bank.services.exceptions.RequiredFieldException;
 import bank.accenture.accenture.bank.services.exceptions.ResourceNotFoundException;
 
 @Service
@@ -59,6 +59,7 @@ public class AgencyService {
 		}
 	}
 	
+	@Transactional
 	public Agency update(long id, AgencyDTO obj) {
 		try {
 			Agency agencyFind = repository.getById(id);
